@@ -5,7 +5,12 @@ import { lusitana } from '@/app/ui/fonts';
 import { fetchLatestInvoices } from '@/app/lib/data';
 import { Suspense } from 'react';
 import { fetchCardData } from '@/app/lib/data';
-import { RevenueChartSkeleton, LatestInvoicesSkeleton, } from '@/app/ui/skeletons';
+import {
+  RevenueChartSkeleton,
+  LatestInvoicesSkeleton,
+  CardsSkeleton,
+} from '@/app/ui/skeletons';
+import CardWrapper from '@/app/ui/dashboard/cards';
 
 export default async function Page() {
   const {
@@ -31,12 +36,9 @@ export default async function Page() {
         />
       </div>
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
-      <Suspense fallback={<RevenueChartSkeleton />}>
-          <RevenueChart />
-        </Suspense>
-        <Suspense fallback={<LatestInvoicesSkeleton />}>
-          <LatestInvoices />
-        </Suspense>                                                                                                                
+      <Suspense fallback={<CardsSkeleton />}>
+          <CardWrapper />
+        </Suspense>                      
       </div>
     </main>
   );
