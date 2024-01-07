@@ -1,3 +1,6 @@
+"use client"
+
+import { useFormState } from 'react-dom';
 import { CustomerField } from '@/app/lib/definitions';
 import Link from 'next/link';
 import {
@@ -9,8 +12,10 @@ import {
 import { Button } from '@/app/ui/button';
 
 export default function Form({ customers }: { customers: CustomerField[] }) {
+  const [state, dispatch] = useFormState(createInvoice, initialState);
+
   return (
-    <form>
+  <form action={dispatch}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
